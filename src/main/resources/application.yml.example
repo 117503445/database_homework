@@ -1,0 +1,16 @@
+server:
+    port: 80
+
+spring:
+    jpa:
+        hibernate:
+            ddl-auto: update
+
+    data:
+        rest:
+            base-path: /api
+
+    datasource:
+        url: jdbc:mysql://{dbhost}:{dbport}/{dbname}
+        username: {dbusername}
+        password: {dbpassword}
