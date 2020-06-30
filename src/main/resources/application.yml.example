@@ -14,3 +14,7 @@ spring:
         url: jdbc:mysql://{dbhost}:{dbport}/{dbname}
         username: {dbusername}
         password: {dbpassword}
+app:
+    version: @project.version@
+    build:
+        time: @timestamp@

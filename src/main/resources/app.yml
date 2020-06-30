@@ -10,3 +10,8 @@ spring:
         rest:
             base-path: /api
 
+swaggerhost: goldhome.117503445.top
+app:
+    version: @project.version@
+    build:
+        time: @timestamp@
