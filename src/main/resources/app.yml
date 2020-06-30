@@ -5,10 +5,7 @@ spring:
     jpa:
         hibernate:
             ddl-auto: update
-
-    data:
-        rest:
-            base-path: /api
+        show-sql: true
 
 swaggerhost: dbhomework.backend.117503445.top
 app:
