@@ -20,13 +20,17 @@ public class ClassEntity {
     //    @OneToMany(targetEntity = StudentEntity.class, fetch = FetchType.EAGER)
 //    @JoinColumn(name = "student_id",referencedColumnName = "class_id")
 //    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<StudentEntity> studentEntities;
 
-    @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CourseEntity> courseEntities;
 
     private String className;
+
+    @ManyToOne(targetEntity = SubjectEntity.class)
+    @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
+    private SubjectEntity subjectEntity;
 
     public long getClassId() {
         return classId;
@@ -60,5 +64,13 @@ public class ClassEntity {
 
     public void setCourseEntities(Set<CourseEntity> courseEntities) {
         this.courseEntities = courseEntities;
+    }
+
+    public SubjectEntity getSubjectEntity() {
+        return subjectEntity;
+    }
+
+    public void setSubjectEntity(SubjectEntity subjectEntity) {
+        this.subjectEntity = subjectEntity;
     }
 }
