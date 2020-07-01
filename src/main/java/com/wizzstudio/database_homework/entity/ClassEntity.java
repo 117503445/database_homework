@@ -23,6 +23,8 @@ public class ClassEntity {
     @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<StudentEntity> studentEntities;
 
+
+
     private String className;
 
     public long getClassId() {
@@ -48,4 +50,6 @@ public class ClassEntity {
     public void setClassName(String className) {
         this.className = className;
     }
+
+
 }
