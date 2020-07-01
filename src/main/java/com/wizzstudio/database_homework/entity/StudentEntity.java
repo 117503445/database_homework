@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "studentId")
 @Entity
@@ -27,6 +28,9 @@ public class StudentEntity {
     @ManyToOne(targetEntity = ClassEntity.class)
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private ClassEntity classEntity;
+
+    @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<ScoreEntity> scoreEntities;
 
     public long getStudentId() {
         return studentId;
@@ -74,5 +78,13 @@ public class StudentEntity {
 
     public void setStudentNum(long studentNum) {
         this.studentNum = studentNum;
+    }
+
+    public Set<ScoreEntity> getScoreEntities() {
+        return scoreEntities;
+    }
+
+    public void setScoreEntities(Set<ScoreEntity> scoreEntities) {
+        this.scoreEntities = scoreEntities;
     }
 }

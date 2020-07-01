@@ -3,6 +3,7 @@ package com.wizzstudio.database_homework.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "course")
@@ -10,6 +11,7 @@ public class CourseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Column(name = "course_id")
     private long courseId;
 
 
@@ -20,6 +22,9 @@ public class CourseEntity {
     @ManyToOne(targetEntity = TeacherEntity.class)
     @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
     private TeacherEntity teacherEntity;
+
+    @OneToMany(mappedBy = "courseEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<ScoreEntity> scoreEntities;
 
     private String name;
 
