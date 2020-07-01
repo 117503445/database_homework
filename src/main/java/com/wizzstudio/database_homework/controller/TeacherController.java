@@ -1,7 +1,7 @@
 package com.wizzstudio.database_homework.controller;
 
+import com.wizzstudio.database_homework.dto.TeacherSetDto;
 import com.wizzstudio.database_homework.entity.TeacherEntity;
-import com.wizzstudio.database_homework.error.CustomException;
 import com.wizzstudio.database_homework.repository.TeacherRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +24,7 @@ public class TeacherController {
     }
 
     @PostMapping
-    public TeacherEntity save(@RequestBody TeacherEntity teacherEntity) throws CustomException {
-        return teacherRepository.save(teacherEntity);
+    public TeacherEntity save(@RequestBody TeacherSetDto teacherSetDto) {
+        return teacherRepository.save(teacherSetDto.toEntity());
     }
 }
