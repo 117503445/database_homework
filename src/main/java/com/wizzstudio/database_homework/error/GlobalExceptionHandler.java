@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
     @ResponseBody
-    public ResponseEntity<String> exceptionHandler(HttpServletRequest request, CustomException exception) throws Exception {
+    public ResponseEntity<String> exceptionHandler(HttpServletRequest request, CustomException exception) {
         return new ResponseEntity<>(exception.getMessage(), exception.getHttpStatus());
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public ResponseEntity<String> exceptionHandler(HttpServletRequest request, Exception exception) throws Exception {
+    public ResponseEntity<String> exceptionHandler(HttpServletRequest request, Exception exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
