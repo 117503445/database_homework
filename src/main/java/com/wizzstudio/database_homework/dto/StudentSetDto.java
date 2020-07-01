@@ -3,6 +3,7 @@ package com.wizzstudio.database_homework.dto;
 import com.wizzstudio.database_homework.entity.StudentEntity;
 import com.wizzstudio.database_homework.error.CustomException;
 import com.wizzstudio.database_homework.util.RepositoryUtil;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.http.HttpStatus;
 
 public class StudentSetDto {
@@ -13,8 +14,8 @@ public class StudentSetDto {
     private long birthDate;
 
     private long classId;
-
-    private long studentNum;//学号
+    @ApiModelProperty("学号")
+    private long studentNum;
 
     public static StudentEntity toEntity(StudentSetDto studentSetDto) throws CustomException {
 

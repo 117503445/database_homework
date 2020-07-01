@@ -1,6 +1,7 @@
 package com.wizzstudio.database_homework.dto;
 
 import com.wizzstudio.database_homework.entity.StudentEntity;
+import io.swagger.annotations.ApiModelProperty;
 
 public class StudentGetDto {
 
@@ -13,8 +14,8 @@ public class StudentGetDto {
     private long birthDate;
 
     private long classId;
-
-    private long studentNum;//学号
+    @ApiModelProperty("学号")
+    private long studentNum;
 
 
     public static StudentGetDto fromEntity(StudentEntity studentEntity) {

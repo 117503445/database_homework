@@ -3,6 +3,7 @@ package com.wizzstudio.database_homework.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,13 +24,14 @@ public class StudentEntity {
 
     private long birthDate;
 
-    private long studentNum;//学号
+    @ApiModelProperty("学号")
+    private long studentNum;
 
     @ManyToOne(targetEntity = ClassEntity.class)
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private ClassEntity classEntity;
 
-    @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ScoreEntity> scoreEntities;
 
     public long getStudentId() {
