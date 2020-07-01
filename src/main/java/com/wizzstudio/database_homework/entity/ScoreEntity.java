@@ -1,11 +1,16 @@
 package com.wizzstudio.database_homework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.wizzstudio.database_homework.error.CustomException;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "guide")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "scoreId")
 public class ScoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,7 +60,12 @@ public class ScoreEntity {
         return secondScore;
     }
 
-    public void setSecondScore(double secondScore) {
+    public void setSecondScore(double secondScore) throws CustomException {
+
+        if (secondScore >= 0 && firstScore < 0) {
+            throw new CustomException(HttpStatus.BAD_REQUEST, "不允许在正考前进行补考");
+        }
+
         this.secondScore = secondScore;
     }
 

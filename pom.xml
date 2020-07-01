@@ -12,7 +12,7 @@
     </parent>
     <groupId>com.wizzstudio</groupId>
     <artifactId>database_homework</artifactId>
-    <version>0.1.7-SNAPSHOT</version>
+    <version>0.2.0-SNAPSHOT</version>
     <name>database_homework</name>
     <description>database homework</description>
 

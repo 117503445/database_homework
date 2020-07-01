@@ -1,12 +1,15 @@
 package com.wizzstudio.database_homework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "teacher")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "teacherId")
 public class TeacherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
