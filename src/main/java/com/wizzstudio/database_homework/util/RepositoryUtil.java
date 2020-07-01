@@ -1,9 +1,6 @@
 package com.wizzstudio.database_homework.util;
 
-import com.wizzstudio.database_homework.repository.ClassRepository;
-import com.wizzstudio.database_homework.repository.CourseRepository;
-import com.wizzstudio.database_homework.repository.StudentRepository;
-import com.wizzstudio.database_homework.repository.TeacherRepository;
+import com.wizzstudio.database_homework.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +10,17 @@ public class RepositoryUtil {
     private static ClassRepository classRepository;
     private static TeacherRepository teacherRepository;
     private static CourseRepository courseRepository;
+    private static SubjectRepository subjectRepository;
+    private static CollegeRepository collegeRepository;
 
     @Autowired
-    public RepositoryUtil(StudentRepository studentRepository, ClassRepository classRepository, TeacherRepository teacherRepository, CourseRepository courseRepository) {
+    public RepositoryUtil(StudentRepository studentRepository, ClassRepository classRepository, TeacherRepository teacherRepository, CourseRepository courseRepository, SubjectRepository subjectRepository, CollegeRepository collegeRepository) {
         RepositoryUtil.studentRepository = studentRepository;
         RepositoryUtil.classRepository = classRepository;
         RepositoryUtil.teacherRepository = teacherRepository;
         RepositoryUtil.courseRepository = courseRepository;
+        RepositoryUtil.subjectRepository = subjectRepository;
+        RepositoryUtil.collegeRepository = collegeRepository;
     }
 
     public static StudentRepository getStudentRepository() {
@@ -36,5 +37,13 @@ public class RepositoryUtil {
 
     public static CourseRepository getCourseRepository() {
         return courseRepository;
+    }
+
+    public static SubjectRepository getSubjectRepository() {
+        return subjectRepository;
+    }
+
+    public static CollegeRepository getCollegeRepository() {
+        return collegeRepository;
     }
 }

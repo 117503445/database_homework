@@ -2,6 +2,7 @@ package com.wizzstudio.database_homework.controller;
 
 import com.wizzstudio.database_homework.dto.ClassSetDto;
 import com.wizzstudio.database_homework.entity.ClassEntity;
+import com.wizzstudio.database_homework.error.CustomException;
 import com.wizzstudio.database_homework.repository.ClassRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +25,7 @@ public class ClassController {
     }
 
     @PostMapping
-    public ClassEntity save(@RequestBody ClassSetDto classSetDto) {
-        return classRepository.save(ClassSetDto.toEntity(classSetDto));
+    public ClassEntity save(@RequestBody ClassSetDto classSetDto) throws CustomException {
+        return classRepository.save(classSetDto.toEntity());
     }
 }
