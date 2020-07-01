@@ -1,6 +1,9 @@
 package com.wizzstudio.database_homework.controller;
 
+import com.wizzstudio.database_homework.dto.StudentGetDto;
+import com.wizzstudio.database_homework.dto.StudentSetDto;
 import com.wizzstudio.database_homework.entity.StudentEntity;
+import com.wizzstudio.database_homework.error.CustomException;
 import com.wizzstudio.database_homework.repository.StudentRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,14 +19,16 @@ public class StudentController {
     }
 
     @GetMapping()
-    public Page<StudentEntity> pageQuery(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    public Page<StudentGetDto> pageQuery(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                          @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize
     ) {
-        return studentRepository.findAll(PageRequest.of(pageNum - 1, pageSize));
+        var a=studentRepository.findAll(PageRequest.of(pageNum - 1, pageSize)).map(StudentGetDto::fromEntity);
+        System.out.println(a);
+        return a;
     }
 
     @PostMapping
-    public StudentEntity save(@RequestBody StudentEntity studentEntity){
-        return studentRepository.save(studentEntity);
+    public StudentEntity save(@RequestBody StudentSetDto studentSetDto) throws CustomException {
+        return studentRepository.save(StudentSetDto.toEntity(studentSetDto));
     }
 }

@@ -1,5 +1,6 @@
 package com.wizzstudio.database_homework.controller;
 
+import com.wizzstudio.database_homework.dto.ClassSetDto;
 import com.wizzstudio.database_homework.entity.ClassEntity;
 import com.wizzstudio.database_homework.repository.ClassRepository;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ public class ClassController {
     }
 
     @PostMapping
-    public ClassEntity save(@RequestBody ClassEntity classEntity) {
-        return classRepository.save(classEntity);
+    public ClassEntity save(@RequestBody ClassSetDto classSetDto) {
+        return classRepository.save(ClassSetDto.toEntity(classSetDto));
     }
 }

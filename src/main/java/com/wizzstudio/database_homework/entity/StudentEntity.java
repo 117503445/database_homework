@@ -1,9 +1,12 @@
 package com.wizzstudio.database_homework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "studentId")
 @Entity
 @Table(name = "student")
 public class StudentEntity {
@@ -19,9 +22,10 @@ public class StudentEntity {
 
     private long birthDate;
 
-    @ManyToOne(targetEntity = ClassEntity.class)
-    @JoinColumn(name = "student_id", referencedColumnName = "class_id", insertable = false, updatable = false)
+    private long studentNum;//学号
 
+    @ManyToOne(targetEntity = ClassEntity.class)
+    @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private ClassEntity classEntity;
 
     public long getStudentId() {
@@ -62,5 +66,13 @@ public class StudentEntity {
 
     public void setClassEntity(ClassEntity classEntity) {
         this.classEntity = classEntity;
+    }
+
+    public long getStudentNum() {
+        return studentNum;
+    }
+
+    public void setStudentNum(long studentNum) {
+        this.studentNum = studentNum;
     }
 }
