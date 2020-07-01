@@ -13,7 +13,9 @@ public class CourseEntity {
     private long courseId;
 
 
-
+    @ManyToOne(targetEntity = ClassEntity.class)
+    @JoinColumn(name = "class_id", referencedColumnName = "class_id")
+    private ClassEntity classEntity;
 
     private String name;
 
@@ -42,5 +44,13 @@ public class CourseEntity {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public ClassEntity getClassEntity() {
+        return classEntity;
+    }
+
+    public void setClassEntity(ClassEntity classEntity) {
+        this.classEntity = classEntity;
     }
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "class")
@@ -21,9 +21,10 @@ public class ClassEntity {
 //    @JoinColumn(name = "student_id",referencedColumnName = "class_id")
 //    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<StudentEntity> studentEntities;
+    private Set<StudentEntity> studentEntities;
 
-
+    @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<CourseEntity> courseEntities;
 
     private String className;
 
@@ -35,13 +36,6 @@ public class ClassEntity {
         this.classId = classId;
     }
 
-    public List<StudentEntity> getStudentEntities() {
-        return studentEntities;
-    }
-
-    public void setStudentEntities(List<StudentEntity> studentEntities) {
-        this.studentEntities = studentEntities;
-    }
 
     public String getClassName() {
         return className;
@@ -52,4 +46,19 @@ public class ClassEntity {
     }
 
 
+    public Set<StudentEntity> getStudentEntities() {
+        return studentEntities;
+    }
+
+    public void setStudentEntities(Set<StudentEntity> studentEntities) {
+        this.studentEntities = studentEntities;
+    }
+
+    public Set<CourseEntity> getCourseEntities() {
+        return courseEntities;
+    }
+
+    public void setCourseEntities(Set<CourseEntity> courseEntities) {
+        this.courseEntities = courseEntities;
+    }
 }
