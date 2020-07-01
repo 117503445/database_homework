@@ -34,4 +34,12 @@ public class CollegeEntity {
     public void setSubjectEntities(Set<SubjectEntity> subjectEntities) {
         this.subjectEntities = subjectEntities;
     }
+
+    public long getCollegeId() {
+        return collegeId;
+    }
+
+    public void setCollegeId(long collegeId) {
+        this.collegeId = collegeId;
+    }
 }
