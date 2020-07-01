@@ -17,6 +17,10 @@ public class CourseEntity {
     @JoinColumn(name = "class_id", referencedColumnName = "class_id")
     private ClassEntity classEntity;
 
+    @ManyToOne(targetEntity = TeacherEntity.class)
+    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
+    private TeacherEntity teacherEntity;
+
     private String name;
 
     private Integer type;//0 -> 必修  1 -> 限选  2 -> 任选
@@ -52,5 +56,13 @@ public class CourseEntity {
 
     public void setClassEntity(ClassEntity classEntity) {
         this.classEntity = classEntity;
+    }
+
+    public TeacherEntity getTeacherEntity() {
+        return teacherEntity;
+    }
+
+    public void setTeacherEntity(TeacherEntity teacherEntity) {
+        this.teacherEntity = teacherEntity;
     }
 }

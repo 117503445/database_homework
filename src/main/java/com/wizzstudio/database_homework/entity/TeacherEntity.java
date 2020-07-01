@@ -3,6 +3,7 @@ package com.wizzstudio.database_homework.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "teacher")
@@ -16,6 +17,8 @@ public class TeacherEntity {
     private String name;
     private boolean isMale;
 
+    @OneToMany(mappedBy = "teacherEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<CourseEntity> courseEntities;
 
     public String getName() {
         return name;
@@ -31,5 +34,13 @@ public class TeacherEntity {
 
     public void setMale(boolean male) {
         isMale = male;
+    }
+
+    public Set<CourseEntity> getCourseEntities() {
+        return courseEntities;
+    }
+
+    public void setCourseEntities(Set<CourseEntity> courseEntities) {
+        this.courseEntities = courseEntities;
     }
 }
