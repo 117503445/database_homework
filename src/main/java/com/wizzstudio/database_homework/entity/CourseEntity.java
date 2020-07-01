@@ -70,4 +70,12 @@ public class CourseEntity {
     public void setTeacherEntity(TeacherEntity teacherEntity) {
         this.teacherEntity = teacherEntity;
     }
+
+    public Set<ScoreEntity> getScoreEntities() {
+        return scoreEntities;
+    }
+
+    public void setScoreEntities(Set<ScoreEntity> scoreEntities) {
+        this.scoreEntities = scoreEntities;
+    }
 }
