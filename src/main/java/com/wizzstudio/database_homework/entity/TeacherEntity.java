@@ -46,4 +46,12 @@ public class TeacherEntity {
     public void setCourseEntities(Set<CourseEntity> courseEntities) {
         this.courseEntities = courseEntities;
     }
+
+    public long getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(long teacherId) {
+        this.teacherId = teacherId;
+    }
 }
