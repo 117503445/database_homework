@@ -3,6 +3,7 @@ package com.wizzstudio.database_homework.controller;
 import com.wizzstudio.database_homework.dto.StudentGetDto;
 import com.wizzstudio.database_homework.dto.StudentScoreGetDto;
 import com.wizzstudio.database_homework.dto.StudentSetDto;
+import com.wizzstudio.database_homework.dto.StudentTeacherGetDto;
 import com.wizzstudio.database_homework.entity.StudentEntity;
 import com.wizzstudio.database_homework.error.CustomException;
 import com.wizzstudio.database_homework.repository.StudentRepository;
@@ -37,6 +38,7 @@ public class StudentController {
         return studentRepository.save(StudentSetDto.toEntity(studentSetDto));
     }
 
+    @ApiOperation("查询指定 id 学生的基本信息")
     @GetMapping("/{id}")
     public StudentGetDto getOne(@PathVariable long id) throws CustomException {
         var oStudent = studentRepository.findById(id);
@@ -49,7 +51,7 @@ public class StudentController {
 
     @ApiOperation("查询指定 id 学生的成绩")
     @GetMapping("/{id}/score")
-    public List<StudentScoreGetDto> getScore(@PathVariable long id) throws CustomException {
+    public List<StudentScoreGetDto> getScores(@PathVariable long id) throws CustomException {
         var oStudent = studentRepository.findById(id);
         if (oStudent.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
@@ -58,4 +60,15 @@ public class StudentController {
         return RepositoryUtil.getScoreRepository().findAllByStudentEntity(oStudent.get()).stream().map(StudentScoreGetDto::fromScoreEntity).collect(Collectors.toList());
     }
 
+
+    @ApiOperation("查询指定 id 学生的老师")
+    @GetMapping("/{id}/teacher")
+    public List<StudentTeacherGetDto> getTeachers(@PathVariable long id) throws CustomException {
+        var oStudent = studentRepository.findById(id);
+        if (oStudent.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
+        }
+
+        return oStudent.get().getClassEntity().getCourseEntities().stream().map(StudentTeacherGetDto::fromCourseEntity).collect(Collectors.toList());
+    }
 }
