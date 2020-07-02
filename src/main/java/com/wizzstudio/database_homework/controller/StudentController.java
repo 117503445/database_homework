@@ -40,8 +40,19 @@ public class StudentController {
 
     @ApiOperation("查询指定 id 学生的基本信息")
     @GetMapping("/{id}")
-    public StudentGetDto getOne(@PathVariable long id) throws CustomException {
+    public StudentGetDto getOneById(@PathVariable long id) throws CustomException {
         var oStudent = studentRepository.findById(id);
+        if (oStudent.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
+        }
+
+        return StudentGetDto.fromEntity(oStudent.get());
+    }
+
+    @ApiOperation("查询指定 name 学生的基本信息")
+    @GetMapping("/name/{name}")
+    public StudentGetDto getOneByName(@PathVariable String name) throws CustomException {
+        var oStudent = studentRepository.findByName(name);
         if (oStudent.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
         }
