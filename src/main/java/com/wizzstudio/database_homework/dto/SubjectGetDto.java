@@ -17,7 +17,9 @@ public class SubjectGetDto {
         subjectGetDto.setSubjectId(subjectEntity.getSubjectId());
         subjectGetDto.setCollegeId(subjectEntity.getCollegeEntity().getCollegeId());
         subjectGetDto.setName(subjectEntity.getName());
-        subjectGetDto.setClassesId(subjectEntity.getClassEntities().stream().map(ClassEntity::getClassId).collect(Collectors.toList()));
+        if (subjectEntity.getClassEntities() != null) {
+            subjectGetDto.setClassesId(subjectEntity.getClassEntities().stream().map(ClassEntity::getClassId).collect(Collectors.toList()));
+        }
         return subjectGetDto;
     }
 

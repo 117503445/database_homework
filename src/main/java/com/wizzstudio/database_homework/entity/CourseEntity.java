@@ -12,7 +12,7 @@ import java.util.Set;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "courseId")
 public class CourseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "course_id")
     private long courseId;

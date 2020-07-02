@@ -12,7 +12,7 @@ import java.util.Set;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "classId")
 public class ClassEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "class_id")
     private long classId;
@@ -31,6 +31,10 @@ public class ClassEntity {
     @ManyToOne(targetEntity = SubjectEntity.class)
     @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
     private SubjectEntity subjectEntity;
+
+    @ManyToOne(targetEntity = RuleEntity.class)
+    @JoinColumn(name = "rule_id", referencedColumnName = "rule_id")
+    private RuleEntity ruleEntity;
 
     public long getClassId() {
         return classId;
@@ -72,5 +76,13 @@ public class ClassEntity {
 
     public void setSubjectEntity(SubjectEntity subjectEntity) {
         this.subjectEntity = subjectEntity;
+    }
+
+    public RuleEntity getRuleEntity() {
+        return ruleEntity;
+    }
+
+    public void setRuleEntity(RuleEntity ruleEntity) {
+        this.ruleEntity = ruleEntity;
     }
 }

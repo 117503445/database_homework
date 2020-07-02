@@ -17,7 +17,9 @@ public class TeacherGetDto {
         teacherGetDto.setMale(teacherEntity.isMale());
         teacherGetDto.setName(teacherEntity.getName());
         teacherGetDto.setTeacherId(teacherEntity.getTeacherId());
-        teacherGetDto.setCoursesId(teacherEntity.getCourseEntities().stream().map(CourseEntity::getCourseId).collect(Collectors.toList()));
+        if (teacherEntity.getCourseEntities() != null) {
+            teacherGetDto.setCoursesId(teacherEntity.getCourseEntities().stream().map(CourseEntity::getCourseId).collect(Collectors.toList()));
+        }
         return teacherGetDto;
     }
 

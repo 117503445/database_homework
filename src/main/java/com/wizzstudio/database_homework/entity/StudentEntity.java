@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "student")
 public class StudentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "student_id")
     private long studentId;

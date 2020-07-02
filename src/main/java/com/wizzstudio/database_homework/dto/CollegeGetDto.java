@@ -12,11 +12,13 @@ public class CollegeGetDto {
     private List<Long> subjectsId;
 
     public static CollegeGetDto fromEntity(CollegeEntity collegeEntity) {
-        CollegeGetDto collegeGetDto=new CollegeGetDto();
+        CollegeGetDto collegeGetDto = new CollegeGetDto();
         collegeGetDto.setName(collegeEntity.getName());
         collegeGetDto.setCollegeId(collegeEntity.getCollegeId());
-        collegeGetDto.setSubjectsId(collegeEntity.getSubjectEntities().stream().map(SubjectEntity::getSubjectId).collect(Collectors.toList()));
-        return  collegeGetDto;
+        if (collegeEntity.getSubjectEntities() != null) {
+            collegeGetDto.setSubjectsId(collegeEntity.getSubjectEntities().stream().map(SubjectEntity::getSubjectId).collect(Collectors.toList()));
+        }
+        return collegeGetDto;
     }
 
     public long getCollegeId() {

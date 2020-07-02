@@ -13,7 +13,7 @@ import javax.persistence.*;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "scoreId")
 public class ScoreEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "score_id")
     private long scoreId;

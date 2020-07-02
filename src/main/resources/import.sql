@@ -1,12 +1,14 @@
+INSERT INTO `dbhomework`.`rule`(`rule_id`,`max_bi_xiu_failed_credit`,`max_ren_xuan_failed_credit`,`max_xian_xuan_failed_credit`) VALUES (1,10,30,20);
+
 INSERT INTO `dbhomework`.`college`(`college_id`, `name`) VALUES (1, "网络与信息安全");
 INSERT INTO `dbhomework`.`college`(`college_id`, `name`) VALUES (2, "应用数学与统计");
 
 INSERT INTO `dbhomework`.`subject`(`subject_id`,`name`,`college_id`) VALUES (1,"网络空间安全",1);
 INSERT INTO `dbhomework`.`subject`(`subject_id`,`name`,`college_id`) VALUES (2,"应用数学",2);
 
-INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`subject_id`) VALUES (1,"1818039","1");
-INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`subject_id`) VALUES (2,"1807021","2");
-INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`subject_id`) VALUES (3,"1807022","2");
+INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`rule_id`,`subject_id`) VALUES (1,"1818039",1,"1");
+INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`rule_id`,`subject_id`) VALUES (2,"1807021",1,"2");
+INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`rule_id`,`subject_id`) VALUES (3,"1807022",1,"2");
 
 INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (1,true,"张语一");
 INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (2,true,"张语二");

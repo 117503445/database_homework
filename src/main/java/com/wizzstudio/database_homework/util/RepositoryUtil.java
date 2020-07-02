@@ -13,9 +13,10 @@ public class RepositoryUtil {
     private static SubjectRepository subjectRepository;
     private static CollegeRepository collegeRepository;
     private static ScoreRepository scoreRepository;
+    private static RuleRepository ruleRepository;
 
     @Autowired
-    public RepositoryUtil(StudentRepository studentRepository, ClassRepository classRepository, TeacherRepository teacherRepository, CourseRepository courseRepository, SubjectRepository subjectRepository, CollegeRepository collegeRepository, ScoreRepository scoreRepository) {
+    public RepositoryUtil(StudentRepository studentRepository, ClassRepository classRepository, TeacherRepository teacherRepository, CourseRepository courseRepository, SubjectRepository subjectRepository, CollegeRepository collegeRepository, ScoreRepository scoreRepository, RuleRepository ruleRepository) {
         RepositoryUtil.studentRepository = studentRepository;
         RepositoryUtil.classRepository = classRepository;
         RepositoryUtil.teacherRepository = teacherRepository;
@@ -23,6 +24,7 @@ public class RepositoryUtil {
         RepositoryUtil.subjectRepository = subjectRepository;
         RepositoryUtil.collegeRepository = collegeRepository;
         RepositoryUtil.scoreRepository = scoreRepository;
+        RepositoryUtil.ruleRepository = ruleRepository;
     }
 
     public static StudentRepository getStudentRepository() {
@@ -51,5 +53,9 @@ public class RepositoryUtil {
 
     public static ScoreRepository getScoreRepository() {
         return scoreRepository;
+    }
+
+    public static RuleRepository getRuleRepository() {
+        return ruleRepository;
     }
 }

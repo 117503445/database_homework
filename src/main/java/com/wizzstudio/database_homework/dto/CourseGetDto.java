@@ -19,7 +19,9 @@ public class CourseGetDto {
         courseGetDto.setCourseId(courseEntity.getCourseId());
         courseGetDto.setCredit(courseEntity.getCredit());
         courseGetDto.setName(courseEntity.getName());
-        courseGetDto.setScoresId(courseEntity.getScoreEntities().stream().map(ScoreEntity::getScoreId).collect(Collectors.toList()));
+        if (courseEntity.getScoreEntities() != null) {
+            courseGetDto.setScoresId(courseEntity.getScoreEntities().stream().map(ScoreEntity::getScoreId).collect(Collectors.toList()));
+        }
         courseGetDto.setTeacherId(courseEntity.getCourseId());
         courseGetDto.setType(courseEntity.getType());
         return courseGetDto;

@@ -10,16 +10,18 @@ public class ClassGetDto {
     private long classId;
     private String className;
     private Set<Long> studentsId;
+    private long ruleId;
 
     public static ClassGetDto fromEntity(ClassEntity classEntity) {
-        ClassGetDto classGetDto=new ClassGetDto();
+        ClassGetDto classGetDto = new ClassGetDto();
         classGetDto.setClassId(classEntity.getClassId());
         classGetDto.setClassName(classEntity.getClassName());
-        classGetDto.setStudentsId(classEntity.getStudentEntities().stream().map(StudentEntity::getStudentId).collect(Collectors.toSet()));
-
+        if (classEntity.getStudentEntities() != null) {
+            classGetDto.setStudentsId(classEntity.getStudentEntities().stream().map(StudentEntity::getStudentId).collect(Collectors.toSet()));
+        }
+        classGetDto.setRuleId(classEntity.getRuleEntity().getRuleEntityId());
         return classGetDto;
     }
-
 
 
     public String getClassName() {
@@ -45,5 +47,13 @@ public class ClassGetDto {
 
     public void setStudentsId(Set<Long> studentsId) {
         this.studentsId = studentsId;
+    }
+
+    public long getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(long ruleId) {
+        this.ruleId = ruleId;
     }
 }

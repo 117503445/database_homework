@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "subject")
 public class SubjectEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "subject_id")
     private long subjectId;

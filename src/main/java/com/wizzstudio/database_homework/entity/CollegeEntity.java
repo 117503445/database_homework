@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "college")
 public class CollegeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "college_id")
     private long collegeId;
