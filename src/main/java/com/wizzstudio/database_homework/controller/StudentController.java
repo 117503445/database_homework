@@ -6,6 +6,7 @@ import com.wizzstudio.database_homework.dto.StudentSetDto;
 import com.wizzstudio.database_homework.dto.StudentTeacherGetDto;
 import com.wizzstudio.database_homework.error.CustomException;
 import com.wizzstudio.database_homework.repository.StudentRepository;
+import com.wizzstudio.database_homework.service.StudentService;
 import com.wizzstudio.database_homework.util.RepositoryUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
@@ -81,5 +82,17 @@ public class StudentController {
         }
 
         return oStudent.get().getClassEntity().getCourseEntities().stream().map(StudentTeacherGetDto::fromCourseEntity).collect(Collectors.toList());
+    }
+
+    @ApiOperation("查询快要退学的学生")
+    @GetMapping("/firing")
+    public List<StudentGetDto> getFiringStudents() {
+        return studentRepository.findAll().stream().filter(StudentService::isFiring).map(StudentGetDto::fromEntity).collect(Collectors.toList());
+    }
+
+    @ApiOperation("查询已经退学的学生")
+    @GetMapping("/fired")
+    public List<StudentGetDto> getFiredStudents() {
+        return studentRepository.findAll().stream().filter(StudentService::isFired).map(StudentGetDto::fromEntity).collect(Collectors.toList());
     }
 }

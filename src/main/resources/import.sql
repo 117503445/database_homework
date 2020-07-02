@@ -35,19 +35,19 @@ INSERT INTO `dbhomework`.`student`(`student_id`,`birth_date`,`is_male`,`name`,`s
 
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (1,10,"语文",0,1,1);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (2,10,"数学",0,1,4);
-INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (3,2,"英语",0,1,7);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (3,8,"英语",0,1,7);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (4,10,"限选",1,1,10);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (5,6,"任选",2,1,13);
 
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (6,10,"语文",0,2,2);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (7,10,"数学",0,2,5);
-INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (8,2,"英语",0,2,8);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (8,8,"英语",0,2,8);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (9,10,"限选",1,2,11);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (10,6,"任选",2,2,14);
 
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (11,10,"语文",0,3,3);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (12,10,"数学",0,3,6);
-INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (13,2,"英语",0,3,9);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (13,8,"英语",0,3,9);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (14,10,"限选",1,3,12);
 INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (15,6,"任选",2,3,15);
 
@@ -72,7 +72,7 @@ INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course
 INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (15,100,-1,10,3);
 
 INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (16,100,-1,11,4);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (17,59,-59,12,4);
+INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (17,59,59,12,4);
 INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (18,100,-1,13,4);
 INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (19,100,-1,14,4);
 INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (20,100,-1,15,4);
