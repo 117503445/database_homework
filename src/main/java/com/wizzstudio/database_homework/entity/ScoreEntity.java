@@ -18,8 +18,6 @@ public class ScoreEntity {
     @Column(name = "score_id")
     private long scoreId;
 
-
-
     private double firstScore = -1;//正考成绩,未考试为-1
 
     private double secondScore = -1;//补考成绩,未考试为-1
@@ -41,7 +39,6 @@ public class ScoreEntity {
     }
 
 
-
     public double getFirstScore() {
         return firstScore;
     }
@@ -55,11 +52,12 @@ public class ScoreEntity {
     }
 
     public void setSecondScore(double secondScore) throws CustomException {
-
         if (secondScore >= 0 && firstScore < 0) {
             throw new CustomException(HttpStatus.BAD_REQUEST, "不允许在正考前进行补考");
         }
-
+        if (firstScore >= 60 && secondScore >= 0) {
+            throw new CustomException(HttpStatus.BAD_REQUEST, "正考及格不允许补考");
+        }
         this.secondScore = secondScore;
     }
 
