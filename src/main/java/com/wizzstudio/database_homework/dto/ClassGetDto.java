@@ -1,6 +1,7 @@
 package com.wizzstudio.database_homework.dto;
 
 import com.wizzstudio.database_homework.entity.ClassEntity;
+import com.wizzstudio.database_homework.entity.StudentEntity;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,13 +9,13 @@ import java.util.stream.Collectors;
 public class ClassGetDto {
     private long classId;
     private String className;
-    private Set<StudentGetDto> studentGetDtos;
+    private Set<Long> studentsId;
 
     public static ClassGetDto fromEntity(ClassEntity classEntity) {
         ClassGetDto classGetDto=new ClassGetDto();
         classGetDto.setClassId(classEntity.getClassId());
         classGetDto.setClassName(classEntity.getClassName());
-        classGetDto.setStudentGetDtos(classEntity.getStudentEntities().stream().map(StudentGetDto::fromEntity).collect(Collectors.toSet()));
+        classGetDto.setStudentsId(classEntity.getStudentEntities().stream().map(StudentEntity::getStudentId).collect(Collectors.toSet()));
 
         return classGetDto;
     }
@@ -29,13 +30,6 @@ public class ClassGetDto {
         this.className = className;
     }
 
-    public Set<StudentGetDto> getStudentGetDtos() {
-        return studentGetDtos;
-    }
-
-    public void setStudentGetDtos(Set<StudentGetDto> studentGetDtos) {
-        this.studentGetDtos = studentGetDtos;
-    }
 
     public long getClassId() {
         return classId;
@@ -43,5 +37,13 @@ public class ClassGetDto {
 
     public void setClassId(long classId) {
         this.classId = classId;
+    }
+
+    public Set<Long> getStudentsId() {
+        return studentsId;
+    }
+
+    public void setStudentsId(Set<Long> studentsId) {
+        this.studentsId = studentsId;
     }
 }

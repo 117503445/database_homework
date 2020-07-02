@@ -1,5 +1,6 @@
 package com.wizzstudio.database_homework.controller;
 
+import com.wizzstudio.database_homework.dto.ClassGetDto;
 import com.wizzstudio.database_homework.dto.ClassSetDto;
 import com.wizzstudio.database_homework.entity.ClassEntity;
 import com.wizzstudio.database_homework.error.CustomException;
@@ -18,10 +19,10 @@ public class ClassController {
     }
 
     @GetMapping()
-    public Page<ClassEntity> pageQuery(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    public Page<ClassGetDto> pageQuery(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
                                        @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize
     ) {
-        return classRepository.findAll(PageRequest.of(pageNum - 1, pageSize));
+        return classRepository.findAll(PageRequest.of(pageNum - 1, pageSize)).map(ClassGetDto::fromEntity);
     }
 
     @PostMapping
