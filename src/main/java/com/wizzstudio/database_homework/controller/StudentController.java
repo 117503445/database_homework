@@ -4,7 +4,6 @@ import com.wizzstudio.database_homework.dto.StudentGetDto;
 import com.wizzstudio.database_homework.dto.StudentScoreGetDto;
 import com.wizzstudio.database_homework.dto.StudentSetDto;
 import com.wizzstudio.database_homework.dto.StudentTeacherGetDto;
-import com.wizzstudio.database_homework.entity.StudentEntity;
 import com.wizzstudio.database_homework.error.CustomException;
 import com.wizzstudio.database_homework.repository.StudentRepository;
 import com.wizzstudio.database_homework.util.RepositoryUtil;
@@ -33,9 +32,10 @@ public class StudentController {
         return studentRepository.findAll(PageRequest.of(pageNum - 1, pageSize)).map(StudentGetDto::fromEntity);
     }
 
+    @ApiOperation("录入学生的基本信息")
     @PostMapping
-    public StudentEntity save(@RequestBody StudentSetDto studentSetDto) throws CustomException {
-        return studentRepository.save(StudentSetDto.toEntity(studentSetDto));
+    public StudentGetDto save(@RequestBody StudentSetDto studentSetDto) throws CustomException {
+        return StudentGetDto.fromEntity(studentRepository.save(StudentSetDto.toEntity(studentSetDto)));
     }
 
     @ApiOperation("查询指定 id 学生的基本信息")
