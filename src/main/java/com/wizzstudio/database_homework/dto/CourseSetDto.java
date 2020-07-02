@@ -14,6 +14,8 @@ public class CourseSetDto {
     private long classId;
     private long teacherId;
 
+    private double credit;//学分
+
     public CourseEntity toEntity() throws CustomException {
 
         var oClass = RepositoryUtil.getClassRepository().findById(classId);
@@ -32,7 +34,7 @@ public class CourseSetDto {
         courseEntity.setType(type);
         courseEntity.setClassEntity(oClass.get());
         courseEntity.setTeacherEntity(oTeacher.get());
-
+        courseEntity.setCredit(credit);
         return courseEntity;
     }
 
@@ -66,5 +68,13 @@ public class CourseSetDto {
 
     public void setTeacherId(long teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public double getCredit() {
+        return credit;
+    }
+
+    public void setCredit(double credit) {
+        this.credit = credit;
     }
 }

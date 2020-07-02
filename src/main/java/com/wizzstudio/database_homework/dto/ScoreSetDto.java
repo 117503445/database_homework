@@ -6,7 +6,6 @@ import com.wizzstudio.database_homework.util.RepositoryUtil;
 import org.springframework.http.HttpStatus;
 
 public class ScoreSetDto {
-    private double credit;//学分
 
     private double firstScore = -1;//正考成绩,未考试为-1
 
@@ -30,7 +29,6 @@ public class ScoreSetDto {
         }
 
         ScoreEntity scoreEntity = new ScoreEntity();
-        scoreEntity.setCredit(credit);
         scoreEntity.setFirstScore(firstScore);
         scoreEntity.setSecondScore(secondScore);
 
@@ -40,13 +38,6 @@ public class ScoreSetDto {
         return scoreEntity;
     }
 
-    public double getCredit() {
-        return credit;
-    }
-
-    public void setCredit(double credit) {
-        this.credit = credit;
-    }
 
     public double getFirstScore() {
         return firstScore;

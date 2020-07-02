@@ -18,7 +18,7 @@ public class ScoreEntity {
     @Column(name = "score_id")
     private long scoreId;
 
-    private double credit;//学分
+
 
     private double firstScore = -1;//正考成绩,未考试为-1
 
@@ -40,13 +40,7 @@ public class ScoreEntity {
         this.scoreId = scoreId;
     }
 
-    public double getCredit() {
-        return credit;
-    }
 
-    public void setCredit(double credit) {
-        this.credit = credit;
-    }
 
     public double getFirstScore() {
         return firstScore;

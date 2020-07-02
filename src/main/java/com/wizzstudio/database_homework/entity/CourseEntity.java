@@ -33,6 +33,8 @@ public class CourseEntity {
 
     private Integer type;//0 -> 必修  1 -> 限选  2 -> 任选
 
+    private double credit;//学分
+
     public long getCourseId() {
         return courseId;
     }
@@ -80,5 +82,13 @@ public class CourseEntity {
 
     public void setScoreEntities(Set<ScoreEntity> scoreEntities) {
         this.scoreEntities = scoreEntities;
+    }
+
+    public double getCredit() {
+        return credit;
+    }
+
+    public void setCredit(double credit) {
+        this.credit = credit;
     }
 }
