@@ -62,8 +62,8 @@ public class StudentController {
     }
 
     @ApiOperation("查询指定 id 学生的成绩")
-    @GetMapping("/{id}/score")
-    public List<StudentScoreGetDto> getScores(@PathVariable long id) throws CustomException {
+    @GetMapping("/score")
+    public List<StudentScoreGetDto> getScores(@RequestParam long id) throws CustomException {
         var oStudent = studentRepository.findById(id);
         if (oStudent.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
