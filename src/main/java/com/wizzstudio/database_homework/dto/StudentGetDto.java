@@ -13,15 +13,9 @@ public class StudentGetDto {
 
     private long birthDate;
 
-    private long classId;
-
     private String className;
 
-    private long subjectId;
-
     private String subjectName;
-
-    private long collegeId;
 
     private String collegeName;
 
@@ -36,13 +30,10 @@ public class StudentGetDto {
         var subjectEntity = classEntity.getSubjectEntity();
         var collegeEntity = subjectEntity.getCollegeEntity();
 
-        studentGetDto.setClassId(classEntity.getClassId());
         studentGetDto.setClassName(classEntity.getClassName());
 
-        studentGetDto.setSubjectId(subjectEntity.getSubjectId());
         studentGetDto.setSubjectName(subjectEntity.getName());
 
-        studentGetDto.setCollegeId(collegeEntity.getCollegeId());
         studentGetDto.setCollegeName(collegeEntity.getName());
 
         studentGetDto.setStudentId(studentEntity.getStudentId());
@@ -77,14 +68,6 @@ public class StudentGetDto {
         this.birthDate = birthDate;
     }
 
-    public long getClassId() {
-        return classId;
-    }
-
-    public void setClassId(long classId) {
-        this.classId = classId;
-    }
-
     public long getStudentNum() {
         return studentNum;
     }
@@ -109,28 +92,12 @@ public class StudentGetDto {
         this.className = className;
     }
 
-    public long getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(long subjectId) {
-        this.subjectId = subjectId;
-    }
-
     public String getSubjectName() {
         return subjectName;
     }
 
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
-    }
-
-    public long getCollegeId() {
-        return collegeId;
-    }
-
-    public void setCollegeId(long collegeId) {
-        this.collegeId = collegeId;
     }
 
     public String getCollegeName() {
