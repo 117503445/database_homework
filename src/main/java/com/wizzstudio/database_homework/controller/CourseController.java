@@ -28,4 +28,6 @@ public class CourseController {
     public CourseGetDto save(@RequestBody CourseSetDto courseSetDto) throws CustomException {
         return CourseGetDto.fromEntity(courseRepository.save(courseSetDto.toEntity()));
     }
+
+
 }

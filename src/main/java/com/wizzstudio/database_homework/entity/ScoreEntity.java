@@ -30,6 +30,16 @@ public class ScoreEntity {
     @JoinColumn(name = "course_id", referencedColumnName = "course_id")
     private CourseEntity courseEntity;
 
+    public ScoreEntity() {
+    }
+
+    public ScoreEntity(double firstScore, double secondScore, StudentEntity studentEntity, CourseEntity courseEntity) throws CustomException {
+        setFirstScore(firstScore);
+        setSecondScore(secondScore);
+        setStudentEntity(studentEntity);
+        setCourseEntity(courseEntity);
+    }
+
     public long getScoreId() {
         return scoreId;
     }
@@ -37,7 +47,6 @@ public class ScoreEntity {
     public void setScoreId(long scoreId) {
         this.scoreId = scoreId;
     }
-
 
     public double getFirstScore() {
         return firstScore;

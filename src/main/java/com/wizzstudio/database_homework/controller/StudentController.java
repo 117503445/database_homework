@@ -81,7 +81,7 @@ public class StudentController {
             throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
         }
 
-        return oStudent.get().getClassEntity().getCourseEntities().stream().map(StudentTeacherGetDto::fromCourseEntity).collect(Collectors.toList());
+        return oStudent.get().getClassEntity().getCourseEntities().stream().sorted().map(StudentTeacherGetDto::fromCourseEntity).collect(Collectors.toList());
     }
 
     @ApiOperation("查询快要退学的学生")

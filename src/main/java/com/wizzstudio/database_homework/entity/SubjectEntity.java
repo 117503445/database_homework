@@ -23,6 +23,14 @@ public class SubjectEntity {
     @JoinColumn(name = "college_id", referencedColumnName = "college_id")
     private CollegeEntity collegeEntity;
 
+    public SubjectEntity() {
+    }
+
+    public SubjectEntity(String name, CollegeEntity collegeEntity) {
+        this.name = name;
+        this.collegeEntity = collegeEntity;
+    }
+
     public Set<ClassEntity> getClassEntities() {
         return classEntities;
     }

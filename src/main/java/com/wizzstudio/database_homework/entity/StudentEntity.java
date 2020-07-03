@@ -12,6 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name = "student")
 public class StudentEntity {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -33,6 +35,17 @@ public class StudentEntity {
 
     @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ScoreEntity> scoreEntities;
+
+    public StudentEntity() {
+    }
+
+    public StudentEntity(String name, boolean isMale, long birthDate, long studentNum, ClassEntity classEntity) {
+        this.name = name;
+        this.isMale = isMale;
+        this.birthDate = birthDate;
+        this.studentNum = studentNum;
+        this.classEntity = classEntity;
+    }
 
     public long getStudentId() {
         return studentId;

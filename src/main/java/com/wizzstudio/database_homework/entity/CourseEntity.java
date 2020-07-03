@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "course")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "courseId")
-public class CourseEntity {
+public class CourseEntity implements Comparable<CourseEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -34,6 +34,17 @@ public class CourseEntity {
     private Integer type;//0 -> 必修  1 -> 限选  2 -> 任选
 
     private double credit;//学分
+
+    public CourseEntity() {
+    }
+
+    public CourseEntity(String name, Integer type, double credit, ClassEntity classEntity, TeacherEntity teacherEntity) {
+        this.name = name;
+        this.type = type;
+        this.credit = credit;
+        this.classEntity = classEntity;
+        this.teacherEntity = teacherEntity;
+    }
 
     public long getCourseId() {
         return courseId;
@@ -90,5 +101,10 @@ public class CourseEntity {
 
     public void setCredit(double credit) {
         this.credit = credit;
+    }
+
+    @Override
+    public int compareTo(CourseEntity o) {
+        return (int) (this.getCourseId() - o.getCourseId());
     }
 }

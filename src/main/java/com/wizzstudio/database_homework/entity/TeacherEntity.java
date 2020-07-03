@@ -20,8 +20,20 @@ public class TeacherEntity {
     private String name;
     private boolean isMale;
 
-    @OneToMany(mappedBy = "teacherEntity", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "teacherEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CourseEntity> courseEntities;
+
+    public TeacherEntity() {
+    }
+
+    /**
+     * 默认 isMale = true
+     * @param name 老师姓名
+     */
+    public TeacherEntity(String name) {
+        this.name = name;
+        isMale = true;
+    }
 
     public String getName() {
         return name;

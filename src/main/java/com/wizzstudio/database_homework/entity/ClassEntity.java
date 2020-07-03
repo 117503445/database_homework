@@ -3,6 +3,9 @@ package com.wizzstudio.database_homework.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.wizzstudio.database_homework.error.CustomException;
+import com.wizzstudio.database_homework.util.RepositoryUtil;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -35,6 +38,22 @@ public class ClassEntity {
     @ManyToOne(targetEntity = RuleEntity.class)
     @JoinColumn(name = "rule_id", referencedColumnName = "rule_id")
     private RuleEntity ruleEntity;
+
+    public ClassEntity() {
+    }
+
+    public ClassEntity(String className, SubjectEntity subjectEntity) throws CustomException {
+
+        var rules = RepositoryUtil.getRuleRepository().findAll();
+
+        if (rules.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "未找到任何一个挂科规则。请先 POST 挂科规则，然后创建班级的时候会自动设置此班级挂科规则为第一条挂科规则。");
+        }
+
+        this.className = className;
+        this.subjectEntity = subjectEntity;
+        ruleEntity = rules.get(0);
+    }
 
     public long getClassId() {
         return classId;

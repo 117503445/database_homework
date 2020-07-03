@@ -19,6 +19,13 @@ public class CollegeEntity {
     @OneToMany(mappedBy = "collegeEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<SubjectEntity> subjectEntities;
 
+    public CollegeEntity() {
+    }
+
+    public CollegeEntity(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
