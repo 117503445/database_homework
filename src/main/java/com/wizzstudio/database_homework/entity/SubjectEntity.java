@@ -20,7 +20,7 @@ public class SubjectEntity {
     private String name;
 
     @ManyToOne(targetEntity = CollegeEntity.class)
-    @JoinColumn(name = "college_id", referencedColumnName = "college_id")
+    @JoinColumn(name = "college_id", referencedColumnName = "college_id", foreignKey = @ForeignKey(name = "fk_subject_college"))
     private CollegeEntity collegeEntity;
 
     public SubjectEntity() {

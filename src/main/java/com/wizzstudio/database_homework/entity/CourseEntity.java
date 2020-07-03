@@ -19,11 +19,11 @@ public class CourseEntity implements Comparable<CourseEntity> {
 
 
     @ManyToOne(targetEntity = ClassEntity.class)
-    @JoinColumn(name = "class_id", referencedColumnName = "class_id")
+    @JoinColumn(name = "class_id", referencedColumnName = "class_id", foreignKey = @ForeignKey(name = "fk_course_class"))
     private ClassEntity classEntity;
 
     @ManyToOne(targetEntity = TeacherEntity.class)
-    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
+    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id", foreignKey = @ForeignKey(name = "fk_course_teacher"))
     private TeacherEntity teacherEntity;
 
     @OneToMany(mappedBy = "courseEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

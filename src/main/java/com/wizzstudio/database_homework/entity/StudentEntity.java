@@ -30,7 +30,7 @@ public class StudentEntity {
     private long studentNum;
 
     @ManyToOne(targetEntity = ClassEntity.class)
-    @JoinColumn(name = "class_id", referencedColumnName = "class_id")
+    @JoinColumn(name = "class_id", referencedColumnName = "class_id", foreignKey = @ForeignKey(name = "fk_student_class"))
     private ClassEntity classEntity;
 
     @OneToMany(mappedBy = "studentEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

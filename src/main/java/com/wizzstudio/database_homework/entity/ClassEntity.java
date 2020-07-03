@@ -20,23 +20,21 @@ public class ClassEntity {
     @Column(name = "class_id")
     private long classId;
 
-    //    @OneToMany(targetEntity = StudentEntity.class, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "student_id",referencedColumnName = "class_id")
-//    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<StudentEntity> studentEntities;
 
     @OneToMany(mappedBy = "classEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<CourseEntity> courseEntities;
 
+    @Column(nullable = false, length = 20)
     private String className;
 
     @ManyToOne(targetEntity = SubjectEntity.class)
-    @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
+    @JoinColumn(name = "subject_id", referencedColumnName = "subject_id", foreignKey = @ForeignKey(name = "fk_class_subject"))
     private SubjectEntity subjectEntity;
 
     @ManyToOne(targetEntity = RuleEntity.class)
-    @JoinColumn(name = "rule_id", referencedColumnName = "rule_id")
+    @JoinColumn(name = "rule_id", referencedColumnName = "rule_id", foreignKey = @ForeignKey(name = "fk_class_rule"))
     private RuleEntity ruleEntity;
 
     public ClassEntity() {

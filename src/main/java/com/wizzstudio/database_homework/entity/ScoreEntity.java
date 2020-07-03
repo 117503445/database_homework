@@ -23,11 +23,11 @@ public class ScoreEntity {
     private double secondScore = -1;//补考成绩,未考试为-1
 
     @ManyToOne(targetEntity = StudentEntity.class)
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id", foreignKey = @ForeignKey(name = "fk_score_student"))
     private StudentEntity studentEntity;
 
     @ManyToOne(targetEntity = CourseEntity.class)
-    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
+    @JoinColumn(name = "course_id", referencedColumnName = "course_id", foreignKey = @ForeignKey(name = "fk_score_course"))
     private CourseEntity courseEntity;
 
     public ScoreEntity() {
