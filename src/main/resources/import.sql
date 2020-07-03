@@ -1,4 +1,4 @@
-INSERT INTO `dbhomework`.`rule`(`rule_id`,`max_bi_xiu_failed_credit`,`max_ren_xuan_failed_credit`,`max_xian_xuan_failed_credit`) VALUES (1,10,30,20);
+INSERT INTO `dbhomework`.`rule`(`rule_id`,`max_bi_xiu_failed_credit`,`max_ren_xuan_failed_credit`,`max_xian_xuan_failed_credit`,`min_bi_xiu_credit`,`min_ren_xuan_credit`,`min_xian_xuan_credit`) VALUES (1,10,30,20,22,10,6);
 
 INSERT INTO `dbhomework`.`college`(`college_id`, `name`) VALUES (1, "网络与信息安全");
 INSERT INTO `dbhomework`.`college`(`college_id`, `name`) VALUES (2, "应用数学与统计");

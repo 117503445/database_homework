@@ -8,9 +8,15 @@ import java.util.stream.Collectors;
 
 public class RuleGetDto {
     private long ruleEntityId;
+
     private double maxBiXiuFailedCredit;//必修课允许最多挂多少学分
-    private double maxXianXuanFailedCredit;//必修课允许最多挂多少学分
-    private double maxRenXuanFailedCredit;//必修课允许最多挂多少学分
+    private double maxXianXuanFailedCredit;//限选课允许最多挂多少学分
+    private double maxRenXuanFailedCredit;//任选课允许最多挂多少学分
+
+    private double minBiXiuCredit;//必修课最少要修多少学分
+    private double minXianXuanCredit;//限选课最少要修多少学分
+    private double minRenXuanCredit;//任选课最少要修多少学分
+
     private List<Long> classesId;
 
     public static RuleGetDto fromEntity(RuleEntity ruleEntity) {
@@ -22,6 +28,11 @@ public class RuleGetDto {
         ruleGetDto.setMaxRenXuanFailedCredit(ruleEntity.getMaxRenXuanFailedCredit());
         ruleGetDto.setMaxXianXuanFailedCredit(ruleEntity.getMaxXianXuanFailedCredit());
         ruleGetDto.setRuleEntityId(ruleEntity.getRuleEntityId());
+
+        ruleGetDto.setMinBiXiuCredit(ruleEntity.getMinBiXiuCredit());
+        ruleGetDto.setMinXianXuanCredit(ruleEntity.getMinXianXuanCredit());
+        ruleGetDto.setMinRenXuanCredit(ruleEntity.getMinRenXuanCredit());
+
         return ruleGetDto;
     }
 
@@ -63,5 +74,29 @@ public class RuleGetDto {
 
     public void setClassesId(List<Long> classesId) {
         this.classesId = classesId;
+    }
+
+    public double getMinBiXiuCredit() {
+        return minBiXiuCredit;
+    }
+
+    public void setMinBiXiuCredit(double minBiXiuCredit) {
+        this.minBiXiuCredit = minBiXiuCredit;
+    }
+
+    public double getMinXianXuanCredit() {
+        return minXianXuanCredit;
+    }
+
+    public void setMinXianXuanCredit(double minXianXuanCredit) {
+        this.minXianXuanCredit = minXianXuanCredit;
+    }
+
+    public double getMinRenXuanCredit() {
+        return minRenXuanCredit;
+    }
+
+    public void setMinRenXuanCredit(double minRenXuanCredit) {
+        this.minRenXuanCredit = minRenXuanCredit;
     }
 }
