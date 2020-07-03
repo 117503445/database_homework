@@ -1,10 +1,11 @@
 server:
     port: 80
 
+
 spring:
     jpa:
         hibernate:
-            ddl-auto: update
+            ddl-auto: create-drop
         show-sql: true
 
 swaggerhost: dbhomework.backend.117503445.top
