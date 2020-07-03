@@ -15,7 +15,7 @@ public class ScoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "score_id")
+    @Column(name = "score_id", unique = true)
     private long scoreId;
 
     private double firstScore = -1;//正考成绩,未考试为-1

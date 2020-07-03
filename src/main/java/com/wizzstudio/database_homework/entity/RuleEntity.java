@@ -14,7 +14,7 @@ public class RuleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "rule_id")
+    @Column(name = "rule_id", unique = true)
     private long ruleEntityId;
 
     private double maxBiXiuFailedCredit;//必修课允许最多挂多少学分

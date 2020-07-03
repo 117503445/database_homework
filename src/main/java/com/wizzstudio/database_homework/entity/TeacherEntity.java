@@ -14,9 +14,10 @@ public class TeacherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "teacher_id")
+    @Column(name = "teacher_id", unique = true)
     private long teacherId;
 
+    @Column(length = 10)
     private String name;
     private boolean isMale;
 
@@ -28,6 +29,7 @@ public class TeacherEntity {
 
     /**
      * 默认 isMale = true
+     *
      * @param name 老师姓名
      */
     public TeacherEntity(String name) {

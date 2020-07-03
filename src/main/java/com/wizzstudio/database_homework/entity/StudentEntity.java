@@ -17,9 +17,9 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "student_id")
+    @Column(name = "student_id", unique = true)
     private long studentId;
-
+    @Column(length = 10)
     private String name;
 
     private boolean isMale;

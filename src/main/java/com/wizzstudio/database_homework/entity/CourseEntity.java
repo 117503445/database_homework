@@ -14,7 +14,7 @@ public class CourseEntity implements Comparable<CourseEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "course_id")
+    @Column(name = "course_id", unique = true)
     private long courseId;
 
 
@@ -28,7 +28,7 @@ public class CourseEntity implements Comparable<CourseEntity> {
 
     @OneToMany(mappedBy = "courseEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ScoreEntity> scoreEntities;
-
+    @Column(length = 10)
     private String name;
 
     private Integer type;//0 -> 必修  1 -> 限选  2 -> 任选

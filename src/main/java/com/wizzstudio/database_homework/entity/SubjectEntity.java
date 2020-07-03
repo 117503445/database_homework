@@ -11,12 +11,13 @@ public class SubjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "subject_id")
+    @Column(name = "subject_id", unique = true)
     private long subjectId;
 
     @OneToMany(mappedBy = "subjectEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ClassEntity> classEntities;
 
+    @Column(length = 10)
     private String name;
 
     @ManyToOne(targetEntity = CollegeEntity.class)

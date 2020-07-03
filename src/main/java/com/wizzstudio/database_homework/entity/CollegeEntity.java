@@ -11,9 +11,10 @@ public class CollegeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Column(name = "college_id")
+    @Column(name = "college_id", unique = true)
     private long collegeId;
 
+    @Column(length = 10)
     private String name;
 
     @OneToMany(mappedBy = "collegeEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
