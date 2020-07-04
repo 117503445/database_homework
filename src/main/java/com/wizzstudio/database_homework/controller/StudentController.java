@@ -74,8 +74,8 @@ public class StudentController {
 
 
     @ApiOperation("查询指定 id 学生的老师")
-    @GetMapping("/{id}/teacher")
-    public List<StudentTeacherGetDto> getTeachers(@PathVariable long id) throws CustomException {
+    @GetMapping("/teacher")
+    public List<StudentTeacherGetDto> getTeachers(@RequestParam long id) throws CustomException {
         var oStudent = studentRepository.findById(id);
         if (oStudent.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
