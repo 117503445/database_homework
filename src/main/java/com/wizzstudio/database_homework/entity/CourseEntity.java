@@ -3,6 +3,7 @@ package com.wizzstudio.database_homework.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "course")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "courseId")
+@Check(constraints = "type in (0,1,2)")
 public class CourseEntity implements Comparable<CourseEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

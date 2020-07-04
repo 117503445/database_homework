@@ -53,26 +53,26 @@ INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,
 
 
 
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (1,100,-1,1,1);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (2,100,-1,2,1);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (3,100,-1,3,1);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (4,100,-1,4,1);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (5,100,-1,5,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (1,100,-1,1,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (2,100,-1,2,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (3,100,-1,3,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (4,100,-1,4,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (5,100,-1,5,1);
 
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (6,100,-1,1,2);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (7,100,-1,2,2);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (8,100,-1,3,2);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (9,100,-1,4,2);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (10,100,-1,5,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (6,100,-1,1,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (7,100,-1,2,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (8,100,-1,3,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (9,100,-1,4,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (10,100,-1,5,2);
 
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (11,100,-1,6,3);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (12,100,-1,7,3);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (13,59,59,8,3);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (14,100,-1,9,3);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (15,100,-1,10,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (11,100,-1,6,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (12,100,-1,7,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (13,59,59,8,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (14,100,-1,9,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (15,100,-1,10,3);
 
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (16,100,-1,11,4);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (17,59,59,12,4);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (18,100,-1,13,4);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (19,100,-1,14,4);
-INSERT INTO `dbhomework`.`guide`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (20,100,-1,15,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (16,100,-1,11,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (17,59,59,12,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (18,100,-1,13,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (19,100,-1,14,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (20,100,-1,15,4);

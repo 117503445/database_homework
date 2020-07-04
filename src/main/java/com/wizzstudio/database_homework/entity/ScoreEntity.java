@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.wizzstudio.database_homework.error.CustomException;
+import org.hibernate.annotations.Check;
 import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "guide")
+@Table(name = "score")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "scoreId")
+@Check(constraints = "first_score <= 100 and second_score <= 100 and ((first_score = -1 and second_score = -1) or (first_score > -1 and second_score = -1) or (first_score > -1 and second_score > -1))")
 public class ScoreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
