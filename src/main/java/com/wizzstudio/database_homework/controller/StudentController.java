@@ -33,13 +33,12 @@ public class StudentController {
         return studentRepository.findAll(PageRequest.of(pageNum - 1, pageSize)).map(StudentGetDto::fromEntity);
     }
 
-    @ApiOperation("录入学生的基本信息")
+
     @PostMapping
     public StudentGetDto save(@RequestBody StudentSetDto studentSetDto) throws CustomException {
         return StudentGetDto.fromEntity(studentRepository.save(StudentSetDto.toEntity(studentSetDto)));
     }
 
-    @ApiOperation("查询指定 id 学生的基本信息")
     @GetMapping("/{id}")
     public StudentGetDto getOneById(@PathVariable long id) throws CustomException {
         var oStudent = studentRepository.findById(id);
@@ -54,6 +53,17 @@ public class StudentController {
     @GetMapping("/name/{name}")
     public StudentGetDto getOneByName(@PathVariable String name) throws CustomException {
         var oStudent = studentRepository.findByName(name);
+        if (oStudent.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
+        }
+
+        return StudentGetDto.fromEntity(oStudent.get());
+    }
+
+    @ApiOperation("查询指定 学号 学生的基本信息")
+    @GetMapping("/num/{num}")
+    public StudentGetDto getOneByNum(@PathVariable long num) throws CustomException {
+        var oStudent = studentRepository.findByStudentNum(num);
         if (oStudent.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Student Not Found");
         }
@@ -90,7 +100,7 @@ public class StudentController {
         return studentRepository.findAll().stream().filter(StudentService::isFiring).map(StudentGetDto::fromEntity).collect(Collectors.toList());
     }
 
-    @ApiOperation("查询已经退学的学生")
+
     @GetMapping("/fired")
     public List<StudentGetDto> getFiredStudents() {
         return studentRepository.findAll().stream().filter(StudentService::isFired).map(StudentGetDto::fromEntity).collect(Collectors.toList());
