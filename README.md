@@ -76,6 +76,191 @@ docker run --name databasehomework -d -e dburl="jdbc:mysql://{dbhost}:{dbport}/{
 
 - 上机实习重点在于后台数据库的设计，对于前台程序的开发，能够实现系统功能即可，不要把大量时间花费在界面设计和不必要的代码上。
 
+## API接口定义
+
+### 查询指定 学号 学生的基本信息
+
+<http://dbhomework.backend.117503445.top/swagger-ui.html#/student-controller/getOneByNumUsingGET>
+
+```sh
+curl -X GET "http://dbhomework.backend.117503445.top/student/num/18079100004" -H "accept: */*"
+```
+
+```json
+{
+  "studentId": 2,
+  "name": "齐浩天",
+  "birthDate": 953740800,
+  "className": "1818039",
+  "subjectName": "网络空间安全",
+  "collegeName": "网络与信息安全",
+  "studentNum": 18079100004,
+  "male": true
+}
+```
+
+### 查询指定 name 学生的基本信息
+
+<http://dbhomework.backend.117503445.top/swagger-ui.html#/student-controller/getOneByNameUsingGET>
+
+```sh
+curl -X GET "http://dbhomework.backend.117503445.top/student/name/齐浩天" -H "accept: */*"
+```
+
+```json
+{
+  "studentId": 2,
+  "name": "齐浩天",
+  "birthDate": 953740800,
+  "className": "1818039",
+  "subjectName": "网络空间安全",
+  "collegeName": "网络与信息安全",
+  "studentNum": 18079100004,
+  "male": true
+}
+```
+
+### 查询指定 id 学生的成绩
+
+<http://dbhomework.backend.117503445.top/swagger-ui.html#/student-controller/getScoresUsingGET>
+
+```sh
+curl -X GET "http://dbhomework.backend.117503445.top/student/score?id=1" -H "accept: */*"
+```
+
+```json
+[
+  {
+    "scoreId": 1,
+    "firstScore": 100,
+    "secondScore": -1,
+    "courseName": "语文",
+    "courseType": 0,
+    "courseCredit": 10
+  },
+  {
+    "scoreId": 2,
+    "firstScore": 100,
+    "secondScore": -1,
+    "courseName": "数学",
+    "courseType": 0,
+    "courseCredit": 10
+  },
+  {
+    "scoreId": 3,
+    "firstScore": 100,
+    "secondScore": -1,
+    "courseName": "英语",
+    "courseType": 0,
+    "courseCredit": 8
+  },
+  {
+    "scoreId": 4,
+    "firstScore": 100,
+    "secondScore": -1,
+    "courseName": "限选",
+    "courseType": 1,
+    "courseCredit": 10
+  },
+  {
+    "scoreId": 5,
+    "firstScore": 100,
+    "secondScore": -1,
+    "courseName": "任选",
+    "courseType": 2,
+    "courseCredit": 6
+  }
+]
+```
+
+courseType 的定义:
+
+- 0 -> 必修
+
+- 1 -> 限选
+
+- 2 -> 任选
+
+### 查询指定 id 学生的老师
+
+<http://dbhomework.backend.117503445.top/swagger-ui.html#/student-controller/getTeachersUsingGET>
+
+```sh
+curl -X GET "http://dbhomework.backend.117503445.top/student/teacher?id=1" -H "accept: */*"
+```
+
+```json
+[
+  {
+    "courseName": "语文",
+    "teacherName": "张语一"
+  },
+  {
+    "courseName": "数学",
+    "teacherName": "张数一"
+  },
+  {
+    "courseName": "英语",
+    "teacherName": "张英一"
+  },
+  {
+    "courseName": "限选",
+    "teacherName": "张限一"
+  },
+  {
+    "courseName": "任选",
+    "teacherName": "张任一"
+  }
+]
+```
+
+### 查询快要退学的学生
+
+<http://dbhomework.backend.117503445.top/swagger-ui.html#/student-controller/getFiringStudentsUsingGET>
+
+```sh
+curl -X GET "http://dbhomework.backend.117503445.top/student/firing" -H "accept: */*"
+```
+
+```json
+[
+  {
+    "studentId": 3,
+    "name": "伍松",
+    "birthDate": 957801600,
+    "className": "1807021",
+    "subjectName": "应用数学",
+    "collegeName": "应用数学与统计",
+    "studentNum": 18079100007,
+    "male": true
+  }
+]
+```
+
+### 数据录入
+
+<http://dbhomework.backend.117503445.top/swagger-ui.html#/data-controller/saveUsingPOST_3>
+
+```sh
+curl -X POST "http://dbhomework.backend.117503445.top/data" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"chineseFirstScore\": 0, \"chineseSecondScore\": 0, \"chineseTeacherName\": \"string\", \"className\": \"string\", \"collegeName\": \"string\", \"englishFirstScore\": 0, \"englishSecondScore\": 0, \"englishTeacherName\": \"string\", \"mathFirstScore\": 0, \"mathSecondScore\": 0, \"mathTeacherName\": \"string\", \"renXuanFirstScore\": 0, \"renXuanSecondScore\": 0, \"renXuanTeacherName\": \"string\", \"studentBirthDate\": 0, \"studentIsMale\": true, \"studentName\": \"string\", \"studentNum\": 0, \"subjectName\": \"string\", \"xianXuanFirstScore\": 0, \"xianXuanSecondScore\": 0, \"xianXuanTeacherName\": \"string\"}"
+```
+
+5
+
+返回值为 studentId
+
+> 下列说明为本服务端的逻辑
+
+1. 后端会根据学院名进行查找学院。如果没有找到，就会创建新的学院。
+
+2. 然后根据专业名进行查找专业。如果没有找到，就会创建新的专业。
+
+3. 然后根据班级名进行查找专业。如果没有找到，就会创建新的班级，同时创建相应的语数外等课程和老师。
+
+4. 然后直接创建学生数据，因此允许学生重名。
+
+5. 然后再录入成绩。
+
 ## 数据库设计
 
 ![ER 图](./doc-images/db.png)
