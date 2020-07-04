@@ -75,3 +75,248 @@ docker run --name databasehomework -d -e dburl="jdbc:mysql://{dbhost}:{dbport}/{
 - 可以使用视图来简化系统的设计。
 
 - 上机实习重点在于后台数据库的设计，对于前台程序的开发，能够实现系统功能即可，不要把大量时间花费在界面设计和不必要的代码上。
+
+## 数据库设计
+
+![ER 图](./doc-images/db.png)
+
+符合 BCNF 范式，除了 score 表，都符合第四范式。（希望我没有判断错
+
+> 建表语句
+
+```sql
+--
+-- Table structure for table `class`
+--
+
+DROP TABLE IF EXISTS `class`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `class` (
+  `class_id` bigint NOT NULL AUTO_INCREMENT,
+  `class_name` varchar(20) NOT NULL,
+  `rule_id` bigint DEFAULT NULL,
+  `subject_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`class_id`),
+  KEY `fk_class_rule` (`rule_id`),
+  KEY `fk_class_subject` (`subject_id`),
+  CONSTRAINT `fk_class_rule` FOREIGN KEY (`rule_id`) REFERENCES `rule` (`rule_id`),
+  CONSTRAINT `fk_class_subject` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `college`
+--
+
+DROP TABLE IF EXISTS `college`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `college` (
+  `college_id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`college_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `course`
+--
+
+DROP TABLE IF EXISTS `course`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `course` (
+  `course_id` bigint NOT NULL AUTO_INCREMENT,
+  `credit` double NOT NULL,
+  `name` varchar(10) DEFAULT NULL,
+  `type` int DEFAULT NULL,
+  `class_id` bigint DEFAULT NULL,
+  `teacher_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`course_id`),
+  KEY `fk_course_class` (`class_id`),
+  KEY `fk_course_teacher` (`teacher_id`),
+  CONSTRAINT `fk_course_class` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`),
+  CONSTRAINT `fk_course_teacher` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`),
+  CONSTRAINT `course_chk_1` CHECK ((`type` in (0,1,2)))
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `guide`
+--
+
+DROP TABLE IF EXISTS `guide`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `guide` (
+  `score_id` bigint NOT NULL AUTO_INCREMENT,
+  `first_score` double NOT NULL,
+  `second_score` double NOT NULL,
+  `course_id` bigint DEFAULT NULL,
+  `student_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`score_id`),
+  KEY `fk_score_course` (`course_id`),
+  KEY `fk_score_student` (`student_id`),
+  CONSTRAINT `fk_score_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
+  CONSTRAINT `fk_score_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rule`
+--
+
+DROP TABLE IF EXISTS `rule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rule` (
+  `rule_id` bigint NOT NULL AUTO_INCREMENT,
+  `max_bi_xiu_failed_credit` double NOT NULL,
+  `max_ren_xuan_failed_credit` double NOT NULL,
+  `max_xian_xuan_failed_credit` double NOT NULL,
+  `min_bi_xiu_credit` double NOT NULL,
+  `min_ren_xuan_credit` double NOT NULL,
+  `min_xian_xuan_credit` double NOT NULL,
+  PRIMARY KEY (`rule_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `student`
+--
+
+DROP TABLE IF EXISTS `student`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `student` (
+  `student_id` bigint NOT NULL AUTO_INCREMENT,
+  `birth_date` bigint NOT NULL,
+  `is_male` bit(1) NOT NULL,
+  `name` varchar(10) DEFAULT NULL,
+  `student_num` bigint NOT NULL,
+  `class_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`student_id`),
+  KEY `fk_student_class` (`class_id`),
+  CONSTRAINT `fk_student_class` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `subject`
+--
+
+DROP TABLE IF EXISTS `subject`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `subject` (
+  `subject_id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) DEFAULT NULL,
+  `college_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`subject_id`),
+  KEY `fk_subject_college` (`college_id`),
+  CONSTRAINT `fk_subject_college` FOREIGN KEY (`college_id`) REFERENCES `college` (`college_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `teacher`
+--
+
+DROP TABLE IF EXISTS `teacher`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `teacher` (
+  `teacher_id` bigint NOT NULL AUTO_INCREMENT,
+  `is_male` bit(1) NOT NULL,
+  `name` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`teacher_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+> 数据导入语句
+
+```sql
+INSERT INTO `dbhomework`.`rule`(`rule_id`,`max_bi_xiu_failed_credit`,`max_ren_xuan_failed_credit`,`max_xian_xuan_failed_credit`,`min_bi_xiu_credit`,`min_ren_xuan_credit`,`min_xian_xuan_credit`) VALUES (1,10,30,20,22,10,6);
+
+INSERT INTO `dbhomework`.`college`(`college_id`, `name`) VALUES (1, "网络与信息安全");
+INSERT INTO `dbhomework`.`college`(`college_id`, `name`) VALUES (2, "应用数学与统计");
+
+INSERT INTO `dbhomework`.`subject`(`subject_id`,`name`,`college_id`) VALUES (1,"网络空间安全",1);
+INSERT INTO `dbhomework`.`subject`(`subject_id`,`name`,`college_id`) VALUES (2,"应用数学",2);
+
+INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`rule_id`,`subject_id`) VALUES (1,"1818039",1,"1");
+INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`rule_id`,`subject_id`) VALUES (2,"1807021",1,"2");
+INSERT INTO `dbhomework`.`class`(`class_id`,`class_name`,`rule_id`,`subject_id`) VALUES (3,"1807022",1,"2");
+
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (1,true,"张语一");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (2,true,"张语二");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (3,true,"张语三");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (4,false,"张数一");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (5,true,"张数二");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (6,true,"张数三");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (7,true,"张英一");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (8,false,"张英二");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (9,false,"张英三");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (10,true,"张限一");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (11,true,"张限二");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (12,true,"张限三");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (13,false,"张任一");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (14,true,"张任二");
+INSERT INTO `dbhomework`.`teacher`(`teacher_id`,`is_male`,`name`) VALUES (15,true,"张任三");
+
+INSERT INTO `dbhomework`.`student`(`student_id`,`birth_date`,`is_male`,`name`,`student_num`,`class_id`) VALUES (1,968688000,true,"张宇恺","18180100102",1);
+INSERT INTO `dbhomework`.`student`(`student_id`,`birth_date`,`is_male`,`name`,`student_num`,`class_id`) VALUES (2,953740800,true,"齐浩天","18079100004",1);
+INSERT INTO `dbhomework`.`student`(`student_id`,`birth_date`,`is_male`,`name`,`student_num`,`class_id`) VALUES (3,957801600,true,"伍松","18079100007",2);
+INSERT INTO `dbhomework`.`student`(`student_id`,`birth_date`,`is_male`,`name`,`student_num`,`class_id`) VALUES (4,963158400,false,"陈昆","18070300011",3);
+
+
+
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (1,10,"语文",0,1,1);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (2,10,"数学",0,1,4);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (3,8,"英语",0,1,7);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (4,10,"限选",1,1,10);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (5,6,"任选",2,1,13);
+
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (6,10,"语文",0,2,2);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (7,10,"数学",0,2,5);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (8,8,"英语",0,2,8);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (9,10,"限选",1,2,11);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (10,6,"任选",2,2,14);
+
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (11,10,"语文",0,3,3);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (12,10,"数学",0,3,6);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (13,8,"英语",0,3,9);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (14,10,"限选",1,3,12);
+INSERT INTO `dbhomework`.`course`(`course_id`,`credit`,`name`,`type`,`class_id`,`teacher_id`) VALUES (15,6,"任选",2,3,15);
+
+
+
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (1,100,-1,1,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (2,100,-1,2,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (3,100,-1,3,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (4,100,-1,4,1);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (5,100,-1,5,1);
+
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (6,100,-1,1,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (7,100,-1,2,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (8,100,-1,3,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (9,100,-1,4,2);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (10,100,-1,5,2);
+
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (11,100,-1,6,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (12,100,-1,7,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (13,59,59,8,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (14,100,-1,9,3);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (15,100,-1,10,3);
+
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (16,100,-1,11,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (17,59,59,12,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (18,100,-1,13,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (19,100,-1,14,4);
+INSERT INTO `dbhomework`.`score`(`score_id`,`first_score`,`second_score`,`course_id`,`student_id`) VALUES (20,100,-1,15,4);
+```
+
+## 项目展示
+
+![swagger 文档](./doc-images/swagger.png)
