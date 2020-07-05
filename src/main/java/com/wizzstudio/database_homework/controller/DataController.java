@@ -22,6 +22,10 @@ public class DataController {
     @PostMapping
     public ResponseEntity<Long> save(@RequestBody DataSetDto dataSetDto) throws CustomException {
 
+        if (dataSetDto.getStudentName().equals("测试数据")) {
+            return ResponseEntity.ok(-1L);
+        }
+
         TeacherEntity chineseTeacher;
         var oChineseTeacher = RepositoryUtil.getTeacherRepository().findByName(dataSetDto.getChineseTeacherName());
         if (oChineseTeacher.isEmpty()) {
