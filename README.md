@@ -242,24 +242,31 @@ curl -X GET "http://dbhomework.backend.117503445.top/student/firing" -H "accept:
 <http://dbhomework.backend.117503445.top/swagger-ui.html#/data-controller/saveUsingPOST_3>
 
 ```sh
-curl -X POST "http://dbhomework.backend.117503445.top/data" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"chineseFirstScore\": 0, \"chineseSecondScore\": 0, \"chineseTeacherName\": \"string\", \"className\": \"string\", \"collegeName\": \"string\", \"englishFirstScore\": 0, \"englishSecondScore\": 0, \"englishTeacherName\": \"string\", \"mathFirstScore\": 0, \"mathSecondScore\": 0, \"mathTeacherName\": \"string\", \"renXuanFirstScore\": 0, \"renXuanSecondScore\": 0, \"renXuanTeacherName\": \"string\", \"studentBirthDate\": 0, \"studentIsMale\": true, \"studentName\": \"string\", \"studentNum\": 0, \"subjectName\": \"string\", \"xianXuanFirstScore\": 0, \"xianXuanSecondScore\": 0, \"xianXuanTeacherName\": \"string\"}"
+curl -X POST "http://dbhomework.backend.117503445.top/data" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"chineseFirstScore\": 0, \"chineseSecondScore\": 0, \"chineseTeacherName\": \"语文老师名\", \"className\": \"班级名\", \"collegeName\": \"学院名\", \"englishFirstScore\": 0, \"englishSecondScore\": 0, \"englishTeacherName\": \"英语老师名\", \"mathFirstScore\": 0, \"mathSecondScore\": 0, \"mathTeacherName\": \"数学老师名\", \"renXuanFirstScore\": 0, \"renXuanSecondScore\": 0, \"renXuanTeacherName\": \"任选老师名\", \"studentBirthDate\": 0, \"studentIsMale\": true, \"studentName\": \"string\", \"studentNum\": 0, \"subjectName\": \"专业名\", \"xianXuanFirstScore\": 0, \"xianXuanSecondScore\": 0, \"xianXuanTeacherName\": \"限选老师名\"}"
 ```
 
 5
 
 返回值为 studentId
 
+FirstScore : 正考成绩 未参加考试计为 -1
+SecondScore : 补考成绩 未参加考试计为 -1
+
+
+
 > 下列说明为本服务端的逻辑
 
-1. 后端会根据学院名进行查找学院。如果没有找到，就会创建新的学院。
+1. 后端会根据学院名进行查找学院。如果没有找到，就会创建新的学院。不允许重名。
 
-2. 然后根据专业名进行查找专业。如果没有找到，就会创建新的专业。
+2. 然后根据专业名进行查找专业。如果没有找到，就会创建新的专业。不允许重名。
 
-3. 然后根据班级名进行查找专业。如果没有找到，就会创建新的班级，同时创建相应的语数外等课程和老师。
+3. 根据教师名查找教师。如果没找到，就会创建教师。不允许重名。
 
-4. 然后直接创建学生数据，因此允许学生重名。
+4. 然后根据班级名进行查找班级。如果没有找到，就会创建新的班级，并创建对应的课程。不允许重名。
 
-5. 然后再录入成绩。
+5. 然后直接创建学生数据，因此允许学生重名。
+
+6. 然后再录入成绩。
 
 ## 数据库设计
 
