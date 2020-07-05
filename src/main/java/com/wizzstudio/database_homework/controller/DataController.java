@@ -90,11 +90,11 @@ public class DataController {
             classEntity = RepositoryUtil.getClassRepository().save(new ClassEntity(dataSetDto.getClassName(), subjectEntity));
 
             classEntity.setCourseEntities(Set.of(
-                    RepositoryUtil.getCourseRepository().save(new CourseEntity("语文", 0, 10, classEntity, RepositoryUtil.getTeacherRepository().findAll().get(0))),
-                    RepositoryUtil.getCourseRepository().save(new CourseEntity("数学", 0, 10, classEntity, RepositoryUtil.getTeacherRepository().findAll().get(1))),
-                    RepositoryUtil.getCourseRepository().save(new CourseEntity("英语", 0, 8, classEntity, RepositoryUtil.getTeacherRepository().findAll().get(2))),
-                    RepositoryUtil.getCourseRepository().save(new CourseEntity("限选", 1, 10, classEntity, RepositoryUtil.getTeacherRepository().findAll().get(3))),
-                    RepositoryUtil.getCourseRepository().save(new CourseEntity("任选", 2, 6, classEntity, RepositoryUtil.getTeacherRepository().findAll().get(4)))
+                    RepositoryUtil.getCourseRepository().save(new CourseEntity("语文", 0, 10, classEntity, chineseTeacher)),
+                    RepositoryUtil.getCourseRepository().save(new CourseEntity("数学", 0, 10, classEntity, mathTeacher)),
+                    RepositoryUtil.getCourseRepository().save(new CourseEntity("英语", 0, 8, classEntity, englishTeacher)),
+                    RepositoryUtil.getCourseRepository().save(new CourseEntity("限选", 1, 10, classEntity, xianXuanTeacher)),
+                    RepositoryUtil.getCourseRepository().save(new CourseEntity("任选", 2, 6, classEntity, renXuanTeacher))
             ));
         } else {
             classEntity = oClassEntity.get();
